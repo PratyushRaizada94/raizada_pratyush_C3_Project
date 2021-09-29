@@ -5,6 +5,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,4 +56,16 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void price_should_be_zero_if_there_are_no_items_passes() throws itemNotFoundException{
+        ArrayList<String> orders = new ArrayList<String>();
+        assertEquals(0, restaurant.getOrderPrice(orders));
+    }
+    @Test
+    public void getting_price_for_unavailable_item_should_throw_exception() throws itemNotFoundException{
+        ArrayList<String> orders = new ArrayList<String>();
+        orders.add("Garlic Chicken");
+        assertThrows(itemNotFoundException.class,
+                ()->restaurant.getOrderPrice(orders));
+    }
 }
