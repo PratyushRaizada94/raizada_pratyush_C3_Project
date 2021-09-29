@@ -61,6 +61,29 @@ class RestaurantTest {
         ArrayList<String> orders = new ArrayList<String>();
         assertEquals(0, restaurant.getOrderPrice(orders));
     }
+
+    @Test
+    public void price_should_be_119_for_sweet_corn_soup() throws itemNotFoundException{
+        ArrayList<String> orders = new ArrayList<String>();
+        orders.add("Sweet corn soup");
+        assertEquals(119, restaurant.getOrderPrice(orders));
+    }
+
+    @Test
+    public void price_should_be_238_for_two_sweet_corn_soups() throws itemNotFoundException{
+        ArrayList<String> orders = new ArrayList<String>();
+        orders.add("Sweet corn soup");
+        orders.add("Sweet corn soup");
+        assertEquals(238, restaurant.getOrderPrice(orders));
+    }
+
+    @Test
+    public void price_should_be_388_for_two_sweet_corn_soups_and_vegetable_lasagne() throws itemNotFoundException{
+        ArrayList<String> orders = new ArrayList<String>();
+        orders.add("Sweet corn soup");
+        orders.add("Vegetable lasagne");
+        assertEquals(388, restaurant.getOrderPrice(orders));
+    }
     @Test
     public void getting_price_for_unavailable_item_should_throw_exception() throws itemNotFoundException{
         ArrayList<String> orders = new ArrayList<String>();

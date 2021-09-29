@@ -28,6 +28,23 @@ public class Restaurant {
         return menu;
     }
 
+    private int priceInMenu(String order)throws itemNotFoundException{
+        for(Item item: menu){
+            if(order.equals(item.getName())){
+                return item.getPrice();
+            }
+        }
+        throw new itemNotFoundException("Order item: "+order+" not found in the menu!");
+    }
+
+    public int getOrderPrice(ArrayList<String> orders)throws itemNotFoundException{
+        int total = 0;
+        for(String order: orders){
+            total += priceInMenu(order);
+        }
+        return total;
+    }
+
     private Item findItemByName(String itemName){
         for(Item item: menu) {
             if(item.getName().equals(itemName))
